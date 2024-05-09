@@ -258,14 +258,14 @@ void fixViolations(Node* &root, Node* newNode){
   
 
   //case 5:
-    cout << "newNode: " << newNode->getData() << endl;
+    /*    cout << "newNode: " << newNode->getData() << endl;
     cout << "parent: " << newNode->getParent()->getData() << endl;
     cout << "parent right: " << newNode->getParent()->getRight()->getData() << endl;
     cout << "parent's parent: " << newNode->getParent()->getParent()->getData() << endl;
     cout << "newNode's grandparent: " << newNode->getGrandparent()->getData() << endl;
     cout << "grandparent right: " << newNode->getGrandparent()->getRight()->getRight()->getData() << endl;
-   
-  if (((newNode->getGrandparent()->getRight() == newNode->getParent()) && (newNode->getParent()->getLeft() == newNode)) || (newNode->getGrandparent()->getRight() == newNode->getParent()) && (newNode->getParent()->getLeft() == newNode)){
+    */
+  if (((newNode->getGrandparent()->getRight() == newNode->getParent()) && (newNode->getParent()->getRight() == newNode)) || (newNode->getGrandparent()->getLeft() == newNode->getParent()) && (newNode->getParent()->getLeft() == newNode)){
     cout << "in fix violations right before case five function call" << endl;
     caseFiveInsertion(root, newNode);
     return;
@@ -294,7 +294,9 @@ void rightParentRotation(Node* newNode){ //parent is a right child, newNode is a
   newNode->setRight(temp); //set parent as right child of newnode
   newNode->setLeft(tempThree); //set left child to the old sibling
   newNode->setParent(tempFour);
+  if (tempThree != NULL){
   tempThree->setParent(newNode);
+  }
   temp->setParent(newNode);
   
 }
@@ -314,7 +316,9 @@ void leftParentRotation(Node* newNode){
   newNode->setLeft(temp); //set parent as left child of newnode
   newNode->setRight(tempThree); //set right child of newnode to the old sibling
   newNode->setParent(tempFour); //set parent of newnode to grandparent
+  if (tempThree != NULL){
   tempThree->setParent(newNode); //parent of old sibling is new node
+  }
   temp->setParent(newNode); //set parent of old parent to new node
 } 
 
@@ -335,9 +339,9 @@ void leftGrandRotation(Node* &root, Node* newNode){
   if (tempThree != NULL){
     tempThree->setParent(tempFour); //setting parent for above line
   }
-  cout << "nodes have been rearranged" << endl;
-  cout << "temp: " << temp->getData() << endl;
-  cout << "temp4: " << tempFour->getData() << endl;
+  //cout << "nodes have been rearranged" << endl;
+  //cout << "temp: " << temp->getData() << endl;
+  //cout << "temp4: " << tempFour->getData() << endl;
   temp->setColor('b');
   tempFour->setColor('r');
   cout << "nodes have been recolored" << endl;
