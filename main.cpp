@@ -23,7 +23,7 @@ void caseFiveInsertion(Node* &, Node*);
 int main(){
 
   Node* root = NULL;
-  cout << "welcome to RedBlackTree where we make life hell for no reason!" << endl;
+  cout << "welcome to RedBlackTree!!!" << endl;
   bool running = true;
 
   while (running == true){
@@ -83,7 +83,7 @@ int main(){
         addNode(root, root, newNode);
       }
 
-      cout << "all numbers have been added" << endl;
+      //  cout << "all numbers have been added" << endl;
     }
 
     //else statement about manual insertion
@@ -135,8 +135,8 @@ void addNode(Node* &root, Node* current, Node* newNode){
       current->setLeft(newNode);
       newNode->setParent(current);
       newNode->setColor('r');
-      cout << "added left" << endl;
-      cout << "going to fix violations. still in addnode" << endl;
+      //cout << "added left" << endl;
+      //cout << "going to fix violations. still in addnode" << endl;
       fixViolations(root, newNode);
       
 
@@ -152,8 +152,8 @@ void addNode(Node* &root, Node* current, Node* newNode){
       current->setRight(newNode);
       newNode->setParent(current);
       newNode->setColor('r');
-      cout << "added right" << endl;
-      cout << "going to fix violations. still in addnode" << endl;
+      //cout << "added right" << endl;
+      //cout << "going to fix violations. still in addnode" << endl;
       fixViolations(root, newNode);
     
     }
@@ -166,14 +166,14 @@ void addNode(Node* &root, Node* current, Node* newNode){
 }
 
 void caseOneInsertion(Node*&root, Node* newNode){
-  cout << "in case 1 function" << endl;
+  //cout << "in case 1 function" << endl;
   newNode->setColor('b');
-  cout << "root color has been set to black" << endl;
+  //cout << "root color has been set to black" << endl;
     //fixViolations(root, newNode);
 }
 
 void caseTwoInsertion(Node*&root, Node* newNode){
-  cout << "we're done nothing to do yay!" << endl;
+  //cout << "we're done nothing to do yay!" << endl;
 }
 
 void caseThreeInsertion(Node*&root, Node* newNode){
@@ -188,7 +188,7 @@ void caseThreeInsertion(Node*&root, Node* newNode){
 }
 
 void caseFourInsertion(Node*&root, Node* newNode){
-  cout << "getting inside casefour insertion function" << endl;
+  //cout << "getting inside casefour insertion function" << endl;
   if ((newNode->getGrandparent()->getRight() == newNode->getParent()) && (newNode->getParent()->getLeft() == newNode)){
     //right rotation
     rightParentRotation(newNode);
@@ -203,7 +203,7 @@ void caseFourInsertion(Node*&root, Node* newNode){
 }
 
 void caseFiveInsertion(Node*&root, Node* newNode){
-  cout << "getting inside casefive insertion function" << endl;
+  //cout << "getting inside casefive insertion function" << endl;
   if (newNode->getGrandparent()->getRight() == newNode->getParent() && newNode->getParent()->getRight() == newNode){
     leftGrandRotation(root, newNode);
   }
@@ -218,7 +218,7 @@ void caseFiveInsertion(Node*&root, Node* newNode){
 
 void fixViolations(Node* &root, Node* newNode){
 
-  cout << "getting into fixViolations" << endl;
+  //cout << "getting into fixViolations" << endl;
 
   //case 1: root
   if (root == newNode){ 
@@ -247,12 +247,12 @@ void fixViolations(Node* &root, Node* newNode){
 
   //case 4: uncle is black and triangle
   if ((newNode->getParent()->getColor() == 'r') && ((newNode->getUncle() == NULL)||(newNode->getUncle()->getColor() == 'b'))){
-    cout << "getting into black uncle cases" << endl;
+    //cout << "getting into black uncle cases" << endl;
     
     if (((newNode->getGrandparent()->getRight() == newNode->getParent()) && (newNode->getParent()->getLeft() == newNode))
       || ((newNode->getGrandparent()->getLeft() == newNode->getParent()) && (newNode->getParent()->getRight() == newNode)))
       {
-	cout << "in fixbioaltions right before case Four cfunction call" << endl;
+	//	cout << "in fixbioaltions right before case Four cfunction call" << endl;
 	caseFourInsertion(root, newNode);
       } 
   
@@ -266,7 +266,7 @@ void fixViolations(Node* &root, Node* newNode){
     cout << "grandparent right: " << newNode->getGrandparent()->getRight()->getRight()->getData() << endl;
     */
   if (((newNode->getGrandparent()->getRight() == newNode->getParent()) && (newNode->getParent()->getRight() == newNode)) || (newNode->getGrandparent()->getLeft() == newNode->getParent()) && (newNode->getParent()->getLeft() == newNode)){
-    cout << "in fix violations right before case five function call" << endl;
+    //cout << "in fix violations right before case five function call" << endl;
     caseFiveInsertion(root, newNode);
     return;
   }
@@ -285,7 +285,7 @@ void rightParentRotation(Node* newNode){ //parent is a right child, newNode is a
     parent becomes right child of newNode
     old sibling (right child of parent) becomes left child of newNode
    */
-  cout << "in right parent rotation" << endl;
+  //cout << "in right parent rotation" << endl;
   Node* temp = newNode->getParent(); //parent
   Node* tempTwo = newNode; //itself
   Node* tempThree = newNode->getSibling(); //sibling
@@ -307,7 +307,7 @@ void leftParentRotation(Node* newNode){
     parent becomes left child of newnode
     sibling becomes right child of newnode 
   */
-  cout << "in left parent rotation" << endl;
+  //cout << "in left parent rotation" << endl;
   Node* temp = newNode->getParent(); //parent
   Node* tempTwo = newNode; //itself
   Node* tempThree = newNode->getSibling(); // sibling
@@ -323,7 +323,7 @@ void leftParentRotation(Node* newNode){
 } 
 
 void leftGrandRotation(Node* &root, Node* newNode){
-  cout << "got into left grand" << endl;
+  //cout << "got into left grand" << endl;
   Node* temp = newNode->getParent(); //parent
   Node* tempTwo = newNode; //itself
   Node* tempThree = newNode->getSibling(); //sibling
@@ -331,7 +331,7 @@ void leftGrandRotation(Node* &root, Node* newNode){
   Node* tempFive = newNode->getUncle(); //uncle
   Node* tempSix = newNode->getGrandparent()->getParent();
   
-  cout << "nodes are being set" << endl;
+  //cout << "nodes are being set" << endl;
   temp->setLeft(tempFour); //old grandparent becomes child of old parent
   tempFour->setParent(temp); //setting parent for above line
   tempFour->setRight(tempThree); //old sibling becomes right of old grandparent
@@ -348,75 +348,18 @@ void leftGrandRotation(Node* &root, Node* newNode){
   
   temp->setColor('b');
   tempFour->setColor('r');
-  cout << "nodes have been recolored" << endl;
-  cout << "current root: " << root->getData() << endl;
+  //cout << "nodes have been recolored" << endl;
+  //cout << "current root: " << root->getData() << endl;
   if (root == tempFour){
     root = newNode->getParent();
-    cout << "new root: " << root->getData() << endl;
+    //cout << "new root: " << root->getData() << endl;
   }
 }
 
-/*
-void rightGrandRotation(Node* & root, Node* newNode){
-  cout << "got into right grand" << endl;
-  Node* temp = newNode->getParent(); //parent
-  Node* tempTwo = newNode; //itself
-  Node* tempThree = newNode->getSibling(); //sibling
-  Node* tempFour = newNode->getGrandparent(); //grandparent
-  Node* tempFive = newNode->getUncle(); //uncle
-  Node* tempSix = newNode->getGrandparent()->getParent();
-  
-  
-  cout << "nodes are being set" << endl;
-  cout << "getting here part 1" << endl;
-  temp->setRight(tempFour); //old grandparent becomes child of old parent
-  tempFour->setParent(temp); //setting parent for above line
-  tempFour->setLeft(tempThree); //old sibling becomes right of old grandparent
-  cout << "getting to before tempthree null checker" << endl;
-  if (tempThree != NULL){
-    tempThree->setParent(tempFour); //setting parent for above line
-    cout << "getting here" << endl;
-  }
 
-  cout << "getting after tempthree null checker and before tempsix null checker" << endl;
-  if (tempSix != NULL){
-    
-    tempSix->setLeft(temp);
-    temp->setParent(tempSix);
-    cout << "getting here too" << endl;
-  }
-  //cout << "grandparents right: " << tempSix->getLeft()->getData() << endl;
-  //tempSix->getLeft()->setRight(NULL);
-  temp->setRight(NULL);
   
-  cout << "great grandparent: " << tempSix->getData() << endl;
-  cout << "grandparent: " << tempSix->getLeft()->getData() << endl;
-  cout << "should be 10, left child of grandparent: " << tempSix->getLeft()->getLeft()->getData() << endl;
-  cout << "should be 30, right child of grandparent: " << tempSix->getLeft()->getRight()->getData() << endl;
-  //cout << "should be NULL, right of 30: " << tempSix->getLeft()->getRight()->getRight()->getData() << endl;
-  //  cout << "should be NULL, left of thirty: " << tempSix->getLeft()->getRight()->getLeft()->getData() << endl;
-  //  cout << "should be null, right of 10: " << tempSix->getLeft()->getLeft()->getRight()->getData() << endl;
-  //cout << "should be null, left of 10: " << tempSix->getLeft()->getLeft()->getLeft()->getData() << endl;
-  cout << "should be 50, right of greatgrandparent: " << tempSix->getRight()->getData() << endl;
-  
-  cout << "nodes have been rearranged" << endl;
-  //cout << "temp: " << temp->getData() << endl;
-  //cout << "temp4: " << tempFour->getData() << endl;
-  temp->setColor('b');
-  tempFour->setColor('r');
-  cout << "nodes have been recolored" << endl;
-  cout << "current root: " << root->getData() << endl;
-  cout << "newnode's grandparent: " << newNode->getGrandparent()->getData() << endl;
-  if (root == tempFour){
-    root = newNode->getParent();
-    cout << "new root: " << root->getData() << endl;
-  }
- 
-}
-*/
-
 void rightGrandRotation(Node* &root, Node* newNode){
-  cout << "got into left grand" << endl;
+  //cout << "got into left grand" << endl;
   Node* temp = newNode->getParent(); //parent
   Node* tempTwo = newNode; //itself
   Node* tempThree = newNode->getSibling(); //sibling
@@ -424,7 +367,7 @@ void rightGrandRotation(Node* &root, Node* newNode){
   Node* tempFive = newNode->getUncle(); //uncle
   Node* tempSix = newNode->getGrandparent()->getParent();
 
-  cout << "nodes are being set" << endl;
+  //cout << "nodes are being set" << endl;
   temp->setRight(tempFour); //old grandparent becomes child of old parent
   tempFour->setParent(temp); //setting parent for above line
   tempFour->setLeft(tempThree); //old sibling becomes right of old grandparent
@@ -441,10 +384,10 @@ void rightGrandRotation(Node* &root, Node* newNode){
 
   temp->setColor('b');
   tempFour->setColor('r');
-  cout << "nodes have been recolored" << endl;
-  cout << "current root: " << root->getData() << endl;
+  //cout << "nodes have been recolored" << endl;
+  //cout << "current root: " << root->getData() << endl;
   if (root == tempFour){
     root = newNode->getParent();
-    cout << "new root: " << root->getData() << endl;
+    //cout << "new root: " << root->getData() << endl;
   }
 }

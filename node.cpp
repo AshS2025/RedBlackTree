@@ -2,6 +2,8 @@
 #include "node.h"
 
 Node:: Node(){
+  right = NULL;
+  left = NULL;
 }
 
 Node:: Node(int Data){
