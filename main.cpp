@@ -323,15 +323,14 @@ void leftParentRotation(Node* newNode){
 } 
 
 void leftGrandRotation(Node* &root, Node* newNode){
-  /*
-    pseudocodw
-   */
   cout << "got into left grand" << endl;
   Node* temp = newNode->getParent(); //parent
   Node* tempTwo = newNode; //itself
   Node* tempThree = newNode->getSibling(); //sibling
   Node* tempFour = newNode->getGrandparent(); //grandparent
   Node* tempFive = newNode->getUncle(); //uncle
+  Node* tempSix = newNode->getGrandparent()->getParent();
+  
   cout << "nodes are being set" << endl;
   temp->setLeft(tempFour); //old grandparent becomes child of old parent
   tempFour->setParent(temp); //setting parent for above line
@@ -339,30 +338,92 @@ void leftGrandRotation(Node* &root, Node* newNode){
   if (tempThree != NULL){
     tempThree->setParent(tempFour); //setting parent for above line
   }
-  //cout << "nodes have been rearranged" << endl;
-  //cout << "temp: " << temp->getData() << endl;
-  //cout << "temp4: " << tempFour->getData() << endl;
+
+  if (tempSix != NULL){
+    tempSix->setRight(temp);
+    temp->setParent(tempSix);
+  }
+
+  temp->getRight()->setLeft(NULL);
+  
   temp->setColor('b');
   tempFour->setColor('r');
   cout << "nodes have been recolored" << endl;
   cout << "current root: " << root->getData() << endl;
-  if (root == newNode->getGrandparent()){
+  if (root == tempFour){
     root = newNode->getParent();
     cout << "new root: " << root->getData() << endl;
   }
 }
 
+/*
 void rightGrandRotation(Node* & root, Node* newNode){
-  /*
-    pseudocode
-   */
-
   cout << "got into right grand" << endl;
   Node* temp = newNode->getParent(); //parent
   Node* tempTwo = newNode; //itself
   Node* tempThree = newNode->getSibling(); //sibling
   Node* tempFour = newNode->getGrandparent(); //grandparent
   Node* tempFive = newNode->getUncle(); //uncle
+  Node* tempSix = newNode->getGrandparent()->getParent();
+  
+  
+  cout << "nodes are being set" << endl;
+  cout << "getting here part 1" << endl;
+  temp->setRight(tempFour); //old grandparent becomes child of old parent
+  tempFour->setParent(temp); //setting parent for above line
+  tempFour->setLeft(tempThree); //old sibling becomes right of old grandparent
+  cout << "getting to before tempthree null checker" << endl;
+  if (tempThree != NULL){
+    tempThree->setParent(tempFour); //setting parent for above line
+    cout << "getting here" << endl;
+  }
+
+  cout << "getting after tempthree null checker and before tempsix null checker" << endl;
+  if (tempSix != NULL){
+    
+    tempSix->setLeft(temp);
+    temp->setParent(tempSix);
+    cout << "getting here too" << endl;
+  }
+  //cout << "grandparents right: " << tempSix->getLeft()->getData() << endl;
+  //tempSix->getLeft()->setRight(NULL);
+  temp->setRight(NULL);
+  
+  cout << "great grandparent: " << tempSix->getData() << endl;
+  cout << "grandparent: " << tempSix->getLeft()->getData() << endl;
+  cout << "should be 10, left child of grandparent: " << tempSix->getLeft()->getLeft()->getData() << endl;
+  cout << "should be 30, right child of grandparent: " << tempSix->getLeft()->getRight()->getData() << endl;
+  //cout << "should be NULL, right of 30: " << tempSix->getLeft()->getRight()->getRight()->getData() << endl;
+  //  cout << "should be NULL, left of thirty: " << tempSix->getLeft()->getRight()->getLeft()->getData() << endl;
+  //  cout << "should be null, right of 10: " << tempSix->getLeft()->getLeft()->getRight()->getData() << endl;
+  //cout << "should be null, left of 10: " << tempSix->getLeft()->getLeft()->getLeft()->getData() << endl;
+  cout << "should be 50, right of greatgrandparent: " << tempSix->getRight()->getData() << endl;
+  
+  cout << "nodes have been rearranged" << endl;
+  //cout << "temp: " << temp->getData() << endl;
+  //cout << "temp4: " << tempFour->getData() << endl;
+  temp->setColor('b');
+  tempFour->setColor('r');
+  cout << "nodes have been recolored" << endl;
+  cout << "current root: " << root->getData() << endl;
+  cout << "newnode's grandparent: " << newNode->getGrandparent()->getData() << endl;
+  if (root == tempFour){
+    root = newNode->getParent();
+    cout << "new root: " << root->getData() << endl;
+  }
+ 
+}
+*/
+
+void rightGrandRotation(Node* &root, Node* newNode){
+  cout << "got into left grand" << endl;
+  Node* temp = newNode->getParent(); //parent
+  Node* tempTwo = newNode; //itself
+  Node* tempThree = newNode->getSibling(); //sibling
+  Node* tempFour = newNode->getGrandparent(); //grandparent
+  Node* tempFive = newNode->getUncle(); //uncle
+  Node* tempSix = newNode->getGrandparent()->getParent();
+
   cout << "nodes are being set" << endl;
   temp->setRight(tempFour); //old grandparent becomes child of old parent
   tempFour->setParent(temp); //setting parent for above line
@@ -370,16 +431,20 @@ void rightGrandRotation(Node* & root, Node* newNode){
   if (tempThree != NULL){
     tempThree->setParent(tempFour); //setting parent for above line
   }
-  cout << "nodes have been rearranged" << endl;
-  cout << "temp: " << temp->getData() << endl;
-  cout << "temp4: " << tempFour->getData() << endl;
+
+  if (tempSix != NULL){
+    tempSix->setLeft(temp);
+    temp->setParent(tempSix);
+  }
+
+  temp->getLeft()->setRight(NULL);
+
   temp->setColor('b');
   tempFour->setColor('r');
   cout << "nodes have been recolored" << endl;
   cout << "current root: " << root->getData() << endl;
-  if (root == newNode->getGrandparent()){
+  if (root == tempFour){
     root = newNode->getParent();
     cout << "new root: " << root->getData() << endl;
   }
- 
 }
