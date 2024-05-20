@@ -4,12 +4,14 @@
 Node:: Node(){
   right = NULL;
   left = NULL;
+  parent = NULL;
 }
 
 Node:: Node(int Data){
   data = Data;
   right = NULL;
   left = NULL;
+  parent = NULL;
 }
 
 int Node:: getData(){
