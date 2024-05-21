@@ -339,10 +339,11 @@ void leftGrandRotation(Node* &root, Node* newNode){
     tempThree->setParent(tempFour); //setting parent for above line
   }
 
-  if (tempSix != NULL){
+    if (tempSix != NULL){
     tempSix->setRight(temp);
     temp->setParent(tempSix);
   }
+
 
   temp->getRight()->setLeft(NULL);
   
@@ -376,8 +377,14 @@ void rightGrandRotation(Node* &root, Node* newNode){
   }
 
   if (tempSix != NULL){
+    if (tempSix->getRight() == tempFour){
+      tempSix->setRight(temp);
+      temp->setParent(tempSix);
+    }
+    else {
     tempSix->setLeft(temp);
     temp->setParent(tempSix);
+    }
   }
 
   temp->getLeft()->setRight(NULL);
